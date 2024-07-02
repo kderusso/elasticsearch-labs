@@ -56,7 +56,7 @@ In the [`03-ELSER.ipynb`](./03-ELSER.ipynb) notebook, you'll learn how to:
 - Reindex the data from `search-movies` into another index, `elser-movies`, using the ELSER pipeline for text expansion.
 - Observe the results of running the documents through the model by inspecting the additional terms it adds to documents, which enhance searchability.
 - Perform simple keyword searches on the `elser-movies` index to assess the impact of ELSER's text expansion.
-- Execute ELSER-powered semantic searches using the `text_expansion` query.
+- Execute ELSER-powered semantic searches using the `sparse_vector` query.
 
 ### 4. Multilingual semantic search
 

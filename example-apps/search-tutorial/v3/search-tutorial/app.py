@@ -38,11 +38,10 @@ def handle_search():
                         "bool": {
                             "must": [
                                 {
-                                    "text_expansion": {
-                                        "elser_embedding": {
-                                            "model_id": ".elser_model_2",
-                                            "model_text": parsed_query,
-                                        }
+                                    "sparse_vector": {
+                                        "field": "elser_embedding",
+                                        "inference_id": ".elser_model_2",
+                                        "query": parsed_query,
                                     },
                                 }
                             ],

@@ -123,6 +123,65 @@ def get_text_expansion_request_body(query, size=10, **options):
         "query": {"bool": {"should": text_expansions}},
     }
 
+def get_sparse_vector_request_body(query, size=10, **options):
+    """
+    Generates an ES sparse vector search request.
+    """
+    fields = datasets[options["dataset"]]["elser_search_fields"]
+    result_fields = datasets[options["dataset"]]["result_fields"]
+    sparse_vectors = []
+    boost = 1
+
+    for field in fields:
+
+        split_field_descriptor = field.split("^")
+        if len(split_field_descriptor) == 2:
+            boost = split_field_descriptor[1]
+            field = split_field_descriptor[0]
+        te = {"sparse_vector": {
+            "field": field,
+            "query": query,
+            "inference_id": ".elser_model_1",
+            "boost": boost,
+        }}
+        sparse_vectors.append(te)
+    return {
+        "_source": False,
+        "fields": result_fields,
+        "size": size,
+        "query": {"bool": {"should": sparse_vectors}},
+    }
+
+
+def get_sparse_vector_request_body(query, size=10, **options):
+    """
+    Generates an ES sparse_vector search request.
+    """
+    fields = datasets[options["dataset"]]["elser_search_fields"]
+    result_fields = datasets[options["dataset"]]["result_fields"]
+    sparse_vectors = []
+    boost = 1
+
+    for field in fields:
+
+        split_field_descriptor = field.split("^")
+        if len(split_field_descriptor) == 2:
+            boost = split_field_descriptor[1]
+            field = split_field_descriptor[0]
+        te = {"text_expansion": {
+            "field": field,
+            "query": query,
+            "inference_id": ".elser_model_1",
+            "boost": boost,
+        }}
+        sparse_vectors.append(te)
+    return {
+        "_source": False,
+        "fields": result_fields,
+        "size": size,
+        "query": {"bool": {"should": sparse_vectors}},
+    }
+
 
 def get_text_search_request_body(query, size=10, **options):
     """
