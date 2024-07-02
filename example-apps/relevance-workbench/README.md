@@ -112,7 +112,7 @@ To use your own dataset, you first need to ingest it and then configure the back
 
 The first part described in the chapter below can be used similarly to load your own data.
 
-Use Enterprise Search to create a new index and configure an ML Inference pipeline. In this case, you'll need to choose yourself the fields to generate text expansion, note that ELSER inference works across text fields, and best on shorter spans of text. Those are the fields that the relevance workbench will query.
+Use Enterprise Search to create a new index and configure an ML Inference pipeline. In this case, you'll need to choose yourself the fields to generate sparse vector, note that ELSER inference works across text fields, and best on shorter spans of text. Those are the fields that the relevance workbench will query.
 
 Once the index is ready, use the same Python script to ingest the data, with additional options.
 
